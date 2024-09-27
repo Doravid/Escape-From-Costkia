@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://clna4f3jnkh2f"]
+
+[ext_resource type="Texture2D" uid="uid://b1jv5a3ulxg3v" path="res://assets/man.png" id="1_5e0qc"]
+[ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_rqm0p"]
+
+[node name="mainGame" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.18498)
+billboard = 2
+texture = ExtResource("1_5e0qc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(10.7893, 0, 0, 0, 0.189573, 0, 0, 0, 14.3041, 1.07751, -2.38568, -3.43608)
+use_collision = true
+size = Vector3(1.5741, 1, 1)
+
+[node name="player" parent="." instance=ExtResource("2_rqm0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.731808, -0.768757, -0.788647)
