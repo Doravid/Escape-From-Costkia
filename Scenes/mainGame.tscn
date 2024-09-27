@@ -29,10 +29,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 [node name="TargetPos" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.99683)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="Map" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_d735o")
 
-[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(10.7893, 0, 0, 0, 0.189573, 0, 0, 0, 14.3041, 1.07751, -2.38568, -3.43608)
 use_collision = true
 size = Vector3(1.5741, 1, 1)
