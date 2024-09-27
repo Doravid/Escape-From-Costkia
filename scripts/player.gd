@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+var heldObject
+var returnParent
+
+@onready var raycast = $PlayerCamera/objPickupRaycast
 
 var SPEED := 5.0
 const JUMP_VELOCITY = 4.5
@@ -9,6 +13,8 @@ var mouse_sens := .1
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -17,6 +23,38 @@ func _process(delta: float) -> void:
 		SPEED = 8
 	else: 
 		SPEED = 5
+	
+	if Input.is_action_just_pressed("interact"):
+		if raycast.is_colliding():
+			var target = raycast.get_collider()
+			
+			
+			heldObject = target.duplicate()
+			returnParent = target.get_parent()
+			print(returnParent.name)
+			heldObject.gravity_scale = 0
+			heldObject.linear_velocity = Vector3(0, 0, 0)
+			
+			add_child(heldObject)
+			target.queue_free()
+	
+	if heldObject:
+		heldObject.position = -$PlayerCamera.transform.basis.z * 2
+		heldObject.rotation = -Vector3(0, $PlayerCamera.rotation.y, 0)
+		
+	
+	if Input.is_action_just_pressed("throw"):
+		if heldObject:
+			heldObject.gravity_scale = 1
+			remove_child(heldObject)
+			returnParent.add_child(heldObject)
+			heldObject.position = $".".position + -$".".transform.basis.z * 2
+			heldObject.apply_impulse(-$".".transform.basis.z * 50)
+			heldObject.apply_impulse(Vector3(0, 10, 0))
+			heldObject = null
+			
+			
+		
 	
 	
 func _input(event: InputEvent):

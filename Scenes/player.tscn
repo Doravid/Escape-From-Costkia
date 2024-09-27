@@ -13,6 +13,17 @@ shape = SubResource("CylinderShape3D_r25j0")
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21702, 0)
 
+[node name="objPickupRaycast" type="RayCast3D" parent="PlayerCamera"]
+target_position = Vector3(0, 0, -10)
+collision_mask = 2
+
+[node name="holdPos" type="Node3D" parent="PlayerCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PlayerCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+visible = false
+
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 2
 
