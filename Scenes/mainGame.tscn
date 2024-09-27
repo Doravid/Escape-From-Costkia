@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://clna4f3jnkh2f"]
+[gd_scene load_steps=6 format=3 uid="uid://clna4f3jnkh2f"]
 
 [ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_5p7qq"]
-[ext_resource type="PackedScene" uid="uid://d3xab6vqx885f" path="res://Scenes/interactableMan.tscn" id="3_6wkp0"]
+[ext_resource type="PackedScene" path="res://Scenes/interactableMan.tscn" id="3_6wkp0"]
 [ext_resource type="PackedScene" uid="uid://bmuget5b8bstf" path="res://Scenes/interactableBox.tscn" id="3_bo4vu"]
+[ext_resource type="PackedScene" uid="uid://58ux62k845bs" path="res://Scenes/nav_agent.tscn" id="4_xprng"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_d735o"]
+vertices = PackedVector3Array(-6.91421, -1.98047, -10.0881, -6.91421, -1.98047, 3.16187, 9.08579, -1.98047, 3.16187, 9.08579, -1.98047, -10.0881)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="mainGame" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(10.7893, 0, 0, 0, 0.189573, 0, 0, 0, 14.3041, 1.07751, -2.38568, -3.43608)
-use_collision = true
-size = Vector3(1.5741, 1, 1)
 
 [node name="player" parent="." instance=ExtResource("2_5p7qq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.453079, 0.197988, -0.404305)
@@ -23,4 +23,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.229715, 3.59413, -1.40975)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("3_6wkp0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+<<<<<<< HEAD
 mass = 1.034
+=======
+
+[node name="NavAgent" parent="." instance=ExtResource("4_xprng")]
+
+[node name="TargetPos" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.99683)
+
+[node name="Map" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_d735o")
+
+[node name="Floor" type="CSGBox3D" parent="Map"]
+transform = Transform3D(10.7893, 0, 0, 0, 0.189573, 0, 0, 0, 14.3041, 1.07751, -2.38568, -3.43608)
+use_collision = true
+size = Vector3(1.5741, 1, 1)
+>>>>>>> 9122e241d10cde3331a9c78e756a3bd21588cb9a
