@@ -65,6 +65,7 @@ func _process(delta: float) -> void:
 			heldObject.position = $".".position + -$".".transform.basis.z * 2
 			heldObject.apply_impulse(-$".".transform.basis.z * 50)
 			heldObject.apply_impulse(Vector3(0, 10, 0))
+			heldObject.wasThrown = true
 			heldObject = null
 			
 	if Input.is_action_just_pressed("drop"):
@@ -73,6 +74,7 @@ func _process(delta: float) -> void:
 			remove_child(heldObject)
 			returnParent.add_child(heldObject)
 			heldObject.position = $".".position + -$".".transform.basis.z * 2
+			heldObject.wasThrown = true
 			heldObject = null
 		
 	

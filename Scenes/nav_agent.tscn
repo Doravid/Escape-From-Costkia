@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scripts/PathfindAgent.gd" id="1_ay1cc"]
 
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6v8au"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hanq"]

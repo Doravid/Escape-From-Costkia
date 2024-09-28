@@ -25,8 +25,12 @@ func _on_body_entered(body):
 			if body.get_meta("type") == fetchQuery:
 				player.sanity = player.sanity + 20
 				body.queue_free()
+				if not repeatableBool:
+					queue_free()
 		else:
 			if body.name == fetchQuery:
 				player.sanity = player.sanity + 40
 				body.queue_free()
+				if not repeatableBool:
+					queue_free()
 	
