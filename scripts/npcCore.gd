@@ -33,9 +33,10 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.has_meta("canBePickup"):
-		if body.wasThrown:
+		if body.wasThrown: 
 			timesWronged = timesWronged + 1
 			hatred = timesWronged * 10
+			player.sanity = player.sanity + hatred
 			mode = "pursuit"
 			$Timer.wait_time = hatred
 			$Timer.start()
