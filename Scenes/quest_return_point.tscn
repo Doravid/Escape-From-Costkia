@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1f0e17gumeyf"]
+
+[ext_resource type="Script" path="res://scripts/quest_return_point.gd" id="1_f7v0j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnvtt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stmlo"]
+transparency = 1
+albedo_color = Color(0.976471, 0.847059, 0.894118, 0.541176)
+
+[node name="questReturnPoint" type="Area3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_f7v0j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fnvtt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_stmlo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

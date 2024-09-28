@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://58ux62k845bs"]
 
-[ext_resource type="Script" path="res://Scenes/PathfindAgent.gd" id="1_ay1cc"]
+[ext_resource type="Script" path="res://scripts/PathfindAgent.gd" id="1_ay1cc"]
+
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6v8au"]
 

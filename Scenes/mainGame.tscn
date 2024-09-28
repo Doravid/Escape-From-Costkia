@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpr7410kx7j0i"]
+[gd_scene load_steps=7 format=3 uid="uid://cpr7410kx7j0i"]
 
 [ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_5p7qq"]
 [ext_resource type="PackedScene" uid="uid://d3xab6vqx885f" path="res://Scenes/interactableMan.tscn" id="3_6wkp0"]
 [ext_resource type="PackedScene" uid="uid://bmuget5b8bstf" path="res://Scenes/interactableBox.tscn" id="3_bo4vu"]
 [ext_resource type="PackedScene" uid="uid://58ux62k845bs" path="res://Scenes/nav_agent.tscn" id="4_xprng"]
+[ext_resource type="PackedScene" uid="uid://b1f0e17gumeyf" path="res://Scenes/quest_return_point.tscn" id="5_807m7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_d735o"]
 vertices = PackedVector3Array(-6.91421, -1.98047, -10.0881, -6.91421, -1.98047, 3.16187, 9.08579, -1.98047, 3.16187, 9.08579, -1.98047, -10.0881)
@@ -36,3 +37,16 @@ navigation_mesh = SubResource("NavigationMesh_d735o")
 transform = Transform3D(10.7893, 0, 0, 0, 0.189573, 0, 0, 0, 14.3041, 1.07751, -2.38568, -3.43608)
 use_collision = true
 size = Vector3(1.5741, 1, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+transform = Transform3D(21.8187, 0, 0, 0, 6.52604, 0, 0, 0, 5.58376, -0.0184155, 0.3061, 5.56356)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-9.53725e-07, 0, 5.50421, 0, 6.52604, 0, -21.8187, 0, -2.40596e-07, -10.5467, 0.306101, -0.0203769)
+use_collision = true
+
+[node name="questReturnPoint" parent="." instance=ExtResource("5_807m7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00252, -1.48655, -1.38253)
+fetchTypeBool = false
+fetchQuery = "Box"
