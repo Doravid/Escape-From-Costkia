@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpr7410kx7j0i"]
+[gd_scene load_steps=11 format=3 uid="uid://cpr7410kx7j0i"]
 
 [ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_5p7qq"]
 [ext_resource type="PackedScene" uid="uid://bmuget5b8bstf" path="res://Scenes/interactableBox.tscn" id="3_bo4vu"]
-[ext_resource type="PackedScene" path="res://Scenes/quest_return_point.tscn" id="5_807m7"]
+[ext_resource type="PackedScene" uid="uid://diuph8lwc2deg" path="res://assets/Scene_1_ALL.fbx" id="5_8f0vv"]
+[ext_resource type="PackedScene" uid="uid://b1f0e17gumeyf" path="res://Scenes/quest_return_point.tscn" id="5_807m7"]
 [ext_resource type="PackedScene" uid="uid://dndcamg61vdyl" path="res://Scenes/roamingNPC.tscn" id="5_mhhfp"]
-[ext_resource type="PackedScene" uid="uid://cy8573fwiclig" path="res://Scenes/proj2.fbx" id="5_xteee"]
+[ext_resource type="PackedScene" uid="uid://dcsn6qns4ka12" path="res://assets/Building.fbx" id="6_0e13l"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_d735o"]
 vertices = PackedVector3Array(-49.5, 1, -37, -49.5, 1, 37, 49.5, 1, 37, 49.5, 1, -37)
@@ -43,6 +44,7 @@ freeze = true
 shape = SubResource("BoxShape3D_f23jq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.185191, 0)
 size = Vector3(100, 1, 75)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map"]
@@ -96,8 +98,6 @@ shape = SubResource("BoxShape3D_asr0u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00252, -1.48655, -1.38253)
 fetchTypeBool = false
 fetchQuery = "Box"
-
-[node name="proj2" parent="." instance=ExtResource("5_xteee")]
 
 [node name="NPC" parent="." instance=ExtResource("5_mhhfp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469181, 3.20865, -1.98135)
@@ -356,3 +356,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1843, 3.0353, 16.392)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Scene_1_ALL" parent="." instance=ExtResource("5_8f0vv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106719, 0.0701302, 0.020285)
+
+[node name="Building" parent="." instance=ExtResource("6_0e13l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458388, -0.022644, 0.668744)
