@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpr7410kx7j0i"]
+[gd_scene load_steps=8 format=3 uid="uid://cpr7410kx7j0i"]
 
 [ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_5p7qq"]
 [ext_resource type="PackedScene" uid="uid://bmuget5b8bstf" path="res://Scenes/interactableBox.tscn" id="3_bo4vu"]
-[ext_resource type="PackedScene" uid="uid://b1f0e17gumeyf" path="res://Scenes/quest_return_point.tscn" id="5_807m7"]
+[ext_resource type="PackedScene" path="res://Scenes/quest_return_point.tscn" id="5_807m7"]
 [ext_resource type="PackedScene" uid="uid://dndcamg61vdyl" path="res://Scenes/roamingNPC.tscn" id="5_mhhfp"]
 [ext_resource type="PackedScene" uid="uid://cy8573fwiclig" path="res://Scenes/proj2.fbx" id="5_xteee"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_d735o"]
-vertices = PackedVector3Array(-6.91421, -1.98047, -10.0881, -6.91421, -1.98047, 3.16187, 9.08579, -1.98047, 3.16187, 9.08579, -1.98047, -10.0881)
+vertices = PackedVector3Array(-49.5, 1, -37, -49.5, 1, 37, 49.5, 1, 37, 49.5, 1, -37)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f23jq"]
+size = Vector3(100, 1, 75)
 
 [node name="mainGame" type="Node3D"]
 
@@ -22,32 +25,278 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.453079, 4.72544, -0.404305
 [node name="Box" parent="." instance=ExtResource("3_bo4vu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.229715, 5.09977, -1.40975)
 
-[node name="TargetPos" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21158, 2.91245, -7.99683)
-
 [node name="Map" type="NavigationRegion3D" parent="."]
-transform = Transform3D(4.54154, 0, 0, 0, 1, 0, 0, 0, 6.03449, -3.04635, 2.3156, 9.92492)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04635, -0.013567, 9.92492)
 navigation_mesh = SubResource("NavigationMesh_d735o")
 
-[node name="Floor" type="CSGBox3D" parent="Map"]
-transform = Transform3D(1828.38, 0, 0, 0, 3.7912, 0, 0, 0, 832.321, 1.07751, -3.87785, -3.43608)
-use_collision = true
-size = Vector3(1.5741, 1, 1)
+[node name="RigidBody3D" type="RigidBody3D" parent="Map"]
+gravity_scale = 0.0
+freeze = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
-transform = Transform3D(21.8187, 0, 0, 0, 6.52604, 0, 0, 0, 5.58376, -0.0184155, 0.3061, 5.56356)
-use_collision = true
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_f23jq")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-9.53725e-07, 0, 5.50421, 0, 6.52604, 0, -21.8187, 0, -2.40596e-07, -9.58325, 0.306101, -0.0203769)
-use_collision = true
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/RigidBody3D"]
+size = Vector3(100, 1, 75)
 
 [node name="questReturnPoint" parent="." instance=ExtResource("5_807m7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00252, -1.48655, -1.38253)
 fetchTypeBool = false
 fetchQuery = "Box"
 
-[node name="Node3D" parent="." instance=ExtResource("5_mhhfp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03002, 3.16545, -9.10093)
-
 [node name="proj2" parent="." instance=ExtResource("5_xteee")]
+
+[node name="NPC" parent="." instance=ExtResource("5_mhhfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469181, 3.20865, -1.98135)
+
+[node name="waypoints" type="Node3D" parent="."]
+
+[node name="furniture" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2173, 3.0353, 2.43215)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32694, 0, 0)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65278, 0, -2.09187)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28019, 0, -2.09187)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28019, 0, 2.92414)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36878, 0, 3.99146)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36878, 0, 6.95956)
+
+[node name="pos7" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18108, 0, 6.95956)
+
+[node name="pos8" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18108, 0, -7.53433)
+
+[node name="pos9" type="CSGBox3D" parent="waypoints/furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94426, 0, -7.53433)
+
+[node name="liquor" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08852, 3.0353, 2.43215)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/liquor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23024, -0.945015, 0)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/liquor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.714684, -0.945015, -3.76102)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/liquor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.714684, -0.945015, 4.83909)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/liquor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66319, -0.945015, 3.34467)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/liquor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66319, -0.945015, -5.88399)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/liquor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88786, -0.945015, -1.1288)
+
+[node name="cold Foods" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2062, 3.0353, 6.69634)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32704, 0, 0)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94445, 0, 0)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94445, 0, -3.69873)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65792, 0, -3.69873)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65792, 0, -7.61438)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46036, 0, -12.2208)
+
+[node name="pos7" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46036, 0, 5.0148)
+
+[node name="pos8" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33331, 0, 5.0148)
+
+[node name="pos9" type="CSGBox3D" parent="waypoints/cold Foods"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12237, 0, -2.35249)
+
+[node name="fruits and vegetables" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9013, 3.0353, 19.7821)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/fruits and vegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.77077)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/fruits and vegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.06388)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/fruits and vegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55556, 0, -2.06388)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/fruits and vegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55556, 0, 1.21151)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/fruits and vegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30282, 0, -0.130133)
+
+[node name="tech" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50839, 3.0353, 18.1607)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.96803)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.89489)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84459, 0, 0.285427)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18559, 0, 0.285427)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79422, 0, 0.285427)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2148, 0, 0.285427)
+
+[node name="pos7" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17594, 0, 0.285427)
+
+[node name="pos8" type="CSGBox3D" parent="waypoints/tech"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6741, 0, 0.285427)
+
+[node name="pharmacy" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4788, 3.0353, -22.8923)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/pharmacy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62083, 0, 0)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/pharmacy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0923634, 0, 6.66715)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/pharmacy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98905, 0, 6.66715)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/pharmacy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16092, 0, 1.71011)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/pharmacy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64526, 0, -2.83542)
+
+[node name="misc" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.998633, 3.0353, -17.3929)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.34585)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26912, 0, 0.0158272)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66432, 0, 2.21723)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3316, 0, 2.21723)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.383, 0, -2.74762)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53388, 0, -2.74762)
+
+[node name="pos7" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06458, 0, 1.50262)
+
+[node name="pos8" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4336, 0, 1.50262)
+
+[node name="pos9" type="CSGBox3D" parent="waypoints/misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4336, 0, -2.57976)
+
+[node name="freezers" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5647, 3.0353, -18.2318)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.79625)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.81743)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24455, 0, 3.81743)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24455, 0, -3.43397)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.47144, 0, -3.43397)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.47144, 0, 2.00621)
+
+[node name="pos7" type="CSGBox3D" parent="waypoints/freezers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.47144, 0, -8.49057)
+
+[node name="cleaning Products" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5932, 3.0353, -18.2318)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.77748)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.21795)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70293, 0, 4.21795)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70293, 0, -2.60451)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04866, 0, 1.29421)
+
+[node name="pos6" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04866, 0, -4.06501)
+
+[node name="pos7" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39212, 0, -4.06501)
+
+[node name="pos8" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39212, 0, 3.21601)
+
+[node name="pos9" type="CSGBox3D" parent="waypoints/cleaning Products"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45973, 0, 9.25193)
+
+[node name="checkout" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.4359, 3.0353, -1.15631)
+
+[node name="pos" type="CSGBox3D" parent="waypoints/checkout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59091, 0, 3.13906)
+
+[node name="pos2" type="CSGBox3D" parent="waypoints/checkout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 0, 0)
+
+[node name="pos3" type="CSGBox3D" parent="waypoints/checkout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 0, -3.66624)
+
+[node name="pos4" type="CSGBox3D" parent="waypoints/checkout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 0, -7.22362)
+
+[node name="pos5" type="CSGBox3D" parent="waypoints/checkout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 0, -10.2669)
+
+[node name="exit" type="CSGBox3D" parent="waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1843, 3.0353, 16.392)
