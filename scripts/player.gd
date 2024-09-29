@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 		
 	
 	if Input.is_action_just_pressed("throw"):
-		if heldObject:
+		if not heldObject == null:
 			heldObject.gravity_scale = 1
 			remove_child(heldObject)
 			returnParent.add_child(heldObject)
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 			heldObject = null
 			
 	if Input.is_action_just_pressed("drop"):
-		if heldObject:
+		if not heldObject == null:
 			heldObject.gravity_scale = 1
 			remove_child(heldObject)
 			returnParent.add_child(heldObject)

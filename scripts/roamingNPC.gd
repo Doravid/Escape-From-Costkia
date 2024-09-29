@@ -8,6 +8,9 @@ extends Node3D
 
 var countdown = 0
 
+var justHit := false
+var minHeight = null 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -18,8 +21,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if rigBod.WasHit:
 		activeBod = rigBod
+		$Sprite3D.set_billboard_mode(0)
 	else:
 		activeBod = navBod
+		$Sprite3D.set_billboard_mode(2)
+		
 	
 	
 	
@@ -32,6 +38,8 @@ func _process(delta: float) -> void:
 		rigBod.set_collision_mask_value(1, false)
 		rigBod.position = navBod.position 
 		sprite.position = navBod.position + Vector3.UP * 1
+		sprite.rotation = navBod.rotation
+		rigBod.rotation = navBod.rotation
 	
 	if  activeBod == rigBod:
 		navBod.set_collision_layer_value(1, false)
@@ -44,3 +52,7 @@ func _process(delta: float) -> void:
 		navBod.position = rigBod.position
 		sprite.position = rigBod.position + Vector3.UP * 1
 		sprite.rotation = rigBod.rotation
+		
+	
+	if position.y < -10:
+		position.y = 5

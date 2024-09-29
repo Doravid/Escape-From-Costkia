@@ -49,6 +49,7 @@ func _on_body_entered(body: Node) -> void:
 		if body.wasThrown: 
 			WasHit = true
 			timeElapsed = 500
+			apply_impulse(Vector3.UP * 20)
 			timesWronged = timesWronged + 1
 			hatred = timesWronged * 10
 			player.sanity = player.sanity + hatred

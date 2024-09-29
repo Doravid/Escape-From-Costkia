@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmuget5b8bstf"]
+[gd_scene load_steps=4 format=3 uid="uid://bmuget5b8bstf"]
 
 [ext_resource type="Script" path="res://scripts/interactableItem.gd" id="1_6bkml"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a6nhg"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_lk654"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_42pp8"]
+radius = 0.25
+height = 0.5
 
 [node name="Box" type="RigidBody3D"]
 collision_layer = 2
@@ -12,6 +16,8 @@ metadata/canBePickup = true
 metadata/type = "test"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_a6nhg")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lk654")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_42pp8")
