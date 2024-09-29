@@ -34,7 +34,6 @@ gravity_scale = 0.0
 freeze = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_f23jq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/RigidBody3D"]
@@ -300,3 +299,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 0, -10.2669)
 
 [node name="exit" type="CSGBox3D" parent="waypoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1843, 3.0353, 16.392)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
