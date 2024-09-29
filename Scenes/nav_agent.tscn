@@ -2,18 +2,20 @@
 
 [ext_resource type="Script" path="res://scripts/PathfindAgent.gd" id="1_ay1cc"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6v8au"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yt535"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hanq"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kv1kl"]
 
 [node name="NavAgent" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05107, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_ay1cc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_6v8au")
+mesh = SubResource("CapsuleMesh_yt535")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_2hanq")
+shape = SubResource("CapsuleShape3D_kv1kl")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

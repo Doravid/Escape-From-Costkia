@@ -10,7 +10,7 @@ func _physics_process(delta):
 	
 	var direction = Vector3()
 	
-	nav.target_position = $"../TargetPos".position
+	nav.target_position = get_node("/root/mainGame/player").position
 	
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()

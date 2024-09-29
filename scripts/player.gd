@@ -43,7 +43,6 @@ func _process(delta: float) -> void:
 			if target.has_meta("canBePickup"):
 				heldObject = target.duplicate()
 				returnParent = target.get_parent()
-				print(returnParent.name)
 				heldObject.gravity_scale = 0
 				heldObject.linear_velocity = Vector3(0, 0, 0)
 			
@@ -63,8 +62,8 @@ func _process(delta: float) -> void:
 			remove_child(heldObject)
 			returnParent.add_child(heldObject)
 			heldObject.position = $".".position + -$".".transform.basis.z * 2
-			heldObject.apply_impulse(-$".".transform.basis.z * 50)
-			heldObject.apply_impulse(Vector3(0, 10, 0))
+			heldObject.apply_impulse(-$".".transform.basis.z * 20)
+			heldObject.apply_impulse(Vector3(0, 4, 0))
 			heldObject.wasThrown = true
 			heldObject = null
 			

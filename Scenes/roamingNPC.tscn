@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dndcamg61vdyl"]
+
+[ext_resource type="Script" path="res://scripts/roamingNPC.gd" id="1_715ce"]
+[ext_resource type="PackedScene" uid="uid://58ux62k845bs" path="res://Scenes/nav_agent.tscn" id="2_5gx6v"]
+[ext_resource type="PackedScene" uid="uid://d3xab6vqx885f" path="res://Scenes/interactableMan.tscn" id="3_vfbwo"]
+[ext_resource type="Texture2D" uid="uid://b1jv5a3ulxg3v" path="res://assets/man.png" id="4_toihy"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_715ce")
+
+[node name="NavAgent" parent="." instance=ExtResource("2_5gx6v")]
+
+[node name="RigidBody3D" parent="." instance=ExtResource("3_vfbwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.03222, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.219482, 0)
+texture = ExtResource("4_toihy")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

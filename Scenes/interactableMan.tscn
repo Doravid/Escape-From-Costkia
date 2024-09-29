@@ -1,9 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3xab6vqx885f"]
+[gd_scene load_steps=3 format=3 uid="uid://d3xab6vqx885f"]
 
-[ext_resource type="Texture2D" uid="uid://b1jv5a3ulxg3v" path="res://assets/man.png" id="1_dxcrj"]
 [ext_resource type="Script" path="res://scripts/npcCore.gd" id="1_ecyft"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_igoky"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vj2lj"]
 
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 2
@@ -14,17 +13,16 @@ max_contacts_reported = 5
 script = ExtResource("1_ecyft")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_igoky")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-texture = ExtResource("1_dxcrj")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-visible = false
+shape = SubResource("CapsuleShape3D_vj2lj")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, 0)
+
+[node name="aggroTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
