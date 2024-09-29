@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpr7410kx7j0i"]
+[gd_scene load_steps=10 format=3 uid="uid://cpr7410kx7j0i"]
 
 [ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_5p7qq"]
 [ext_resource type="PackedScene" uid="uid://bmuget5b8bstf" path="res://Scenes/interactableBox.tscn" id="3_bo4vu"]
@@ -12,6 +12,12 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f23jq"]
 size = Vector3(100, 1, 75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydhjd"]
+size = Vector3(2, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_asr0u"]
+size = Vector3(8, 5, 2)
 
 [node name="mainGame" type="Node3D"]
 
@@ -39,6 +45,53 @@ shape = SubResource("BoxShape3D_f23jq")
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/RigidBody3D"]
 size = Vector3(100, 1, 75)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Map"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1695, 1.06064, 10.0411)
+shape = SubResource("BoxShape3D_ydhjd")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Map"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8795, 1.06064, 10.0411)
+shape = SubResource("BoxShape3D_ydhjd")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0431, 1.14059, -0.742048)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.392406, 0, 0)
+shape = SubResource("BoxShape3D_asr0u")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0431, 1.14059, 4.06158)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.392406, 0, 0)
+shape = SubResource("BoxShape3D_asr0u")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0431, 1.14059, -5.23704)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.392406, 0, 0)
+shape = SubResource("BoxShape3D_asr0u")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0431, 1.14059, -8.68915)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.392406, 0, 0)
+shape = SubResource("BoxShape3D_asr0u")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0431, 1.14059, -12.7067)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.392406, 0, 0)
+shape = SubResource("BoxShape3D_asr0u")
+
 [node name="questReturnPoint" parent="." instance=ExtResource("5_807m7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00252, -1.48655, -1.38253)
 fetchTypeBool = false
@@ -50,6 +103,7 @@ fetchQuery = "Box"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469181, 3.20865, -1.98135)
 
 [node name="waypoints" type="Node3D" parent="."]
+visible = false
 
 [node name="furniture" type="CSGBox3D" parent="waypoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2173, 3.0353, 2.43215)

@@ -15,7 +15,6 @@ var searchTarget
 func _process(delta: float) -> void:
 	await get_tree().process_frame
 	
-	print(target.name)
 	
 	if target.position.distance_to($".".position) < 10 and waitBool:
 		wait()
