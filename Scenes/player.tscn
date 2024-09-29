@@ -8,10 +8,11 @@
 script = ExtResource("1_et11l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_r25j0")
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21702, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.738248, 0)
 
 [node name="objPickupRaycast" type="RayCast3D" parent="PlayerCamera"]
 target_position = Vector3(0, 0, -10)
@@ -29,4 +30,5 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_r25j0")
