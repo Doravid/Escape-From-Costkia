@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpr7410kx7j0i"]
+[gd_scene load_steps=7 format=3 uid="uid://cpr7410kx7j0i"]
 
 [ext_resource type="PackedScene" uid="uid://lr7dpxiaghhj" path="res://Scenes/player.tscn" id="2_5p7qq"]
 [ext_resource type="PackedScene" uid="uid://bmuget5b8bstf" path="res://Scenes/interactableBox.tscn" id="3_bo4vu"]
 [ext_resource type="PackedScene" uid="uid://b1f0e17gumeyf" path="res://Scenes/quest_return_point.tscn" id="5_807m7"]
 [ext_resource type="PackedScene" uid="uid://dndcamg61vdyl" path="res://Scenes/roamingNPC.tscn" id="5_mhhfp"]
+[ext_resource type="PackedScene" uid="uid://cy8573fwiclig" path="res://Scenes/proj2.fbx" id="5_xteee"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_d735o"]
 vertices = PackedVector3Array(-6.91421, -1.98047, -10.0881, -6.91421, -1.98047, 3.16187, 9.08579, -1.98047, 3.16187, 9.08579, -1.98047, -10.0881)
@@ -47,3 +48,6 @@ fetchQuery = "Box"
 
 [node name="Node3D" parent="." instance=ExtResource("5_mhhfp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03002, 0.50777, -9.10093)
+
+[node name="proj2" parent="." instance=ExtResource("5_xteee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7577, -1.98225, -46.58)
